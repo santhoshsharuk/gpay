@@ -74,13 +74,9 @@
         return;
       }
 
-      const upiID = "santhoshsharuk16-1@okhdfcbank";
-      const name = "Santhosh Sharuk";
-      const note = "Payment via GPay";
-      const upiLink = `upi://pay?pa=${upiID}&pn=${encodeURIComponent(name)}&tn=${encodeURIComponent(note)}&am=${amount}&cu=INR`;
-
+      const link = `https://santhoshsharuk.me/gpay/pay?amount=${amount}`;
       const message = encodeURIComponent(
-        `Hi 👋,\nPlease pay ₹${amount} using this GPay link:\n${upiLink}\n\nThank you! 🙏`
+        `Hi 👋,\nPlease pay ₹${amount} using this link:\n${link}\n\nThank you! 🙏`
       );
 
       window.open(`https://wa.me/${number}?text=${message}`, "_blank");
