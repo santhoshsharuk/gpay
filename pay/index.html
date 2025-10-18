@@ -17,32 +17,41 @@
     }
     .box {
       background: #fff;
-      padding: 20px 30px;
+      padding: 25px 30px;
       border-radius: 15px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    a {
+      color: #25D366;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
   <div class="box">
     <h2>Redirecting to GPay...</h2>
-    <p>Please wait or <a id="manualLink" href="#">click here</a> if not redirected.</p>
+    <p>If you are not redirected automatically, <a id="manualLink" href="#">click here</a>.</p>
   </div>
 
   <script>
+    // Get amount from URL query string
     const urlParams = new URLSearchParams(window.location.search);
     const amount = urlParams.get("amount") || "0";
+
     const upiID = "santhoshsharuk16-1@okhdfcbank";
     const name = "Santhosh Sharuk";
     const note = "Payment via GPay";
 
+    // Generate UPI link
     const upiLink = `upi://pay?pa=${upiID}&pn=${encodeURIComponent(name)}&tn=${encodeURIComponent(note)}&am=${amount}&cu=INR`;
+
+    // Set manual link fallback
     document.getElementById("manualLink").href = upiLink;
 
-    // Auto-redirect after 1 second
+    // Auto redirect after 0.5 seconds
     setTimeout(() => {
       window.location.href = upiLink;
-    }, 1000);
+    }, 500);
   </script>
 </body>
 </html>
