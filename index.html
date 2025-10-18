@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Santhosh Sharuk | GPay Payment</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #f1f5f9, #ffffff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 350px;
+    }
+    h2 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+    input {
+      width: 90%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+      outline: none;
+    }
+    button {
+      background: #25D366;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #1ebe5d;
+    }
+    footer {
+      margin-top: 15px;
+      font-size: 13px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>💸 Send GPay Payment Request</h2>
+    <input type="number" id="amount" placeholder="Enter Amount (₹)" />
+    <input type="text" id="number" placeholder="Enter WhatsApp Number (e.g. 918123456789)" />
+    <button onclick="sendMessage()">Send via WhatsApp</button>
+    <footer>© 2025 Santhosh Sharuk</footer>
+  </div>
+
+  <script>
+    function sendMessage() {
+      const number = document.getElementById("number").value.trim();
+      const amount = document.getElementById("amount").value.trim();
+
+      if (!number || !amount) {
+        alert("Please enter both WhatsApp number and amount!");
+        return;
+      }
+
+      const upiID = "santhoshsharuk16-1@okhdfcbank";
+      const name = "Santhosh Sharuk";
+      const note = "Payment via GPay";
+      const upiLink = `upi://pay?pa=${upiID}&pn=${encodeURIComponent(name)}&tn=${encodeURIComponent(note)}&am=${amount}&cu=INR`;
+
+      const message = encodeURIComponent(
+        `Hi 👋,\nPlease pay ₹${amount} using this GPay link:\n${upiLink}\n\nThank you! 🙏`
+      );
+
+      window.open(`https://wa.me/${number}?text=${message}`, "_blank");
+    }
+  </script>
+</body>
+</html>
